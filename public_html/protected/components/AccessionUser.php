@@ -1,0 +1,49 @@
+<?php
+ 
+// this file must be stored in:
+// protected/components/WebUser.php
+ 
+class AccessionUser extends CWebUser
+{
+
+	// Store model to not repeat query.
+	private $model = null;
+	
+	public function __get($name) {
+		try {
+			return parent::__get($name);
+		} catch (CException $e) {
+			$m = $this->getModel();
+			if($m !== NULL && $m->hasAttribute($name))
+				return $m->{$name};
+			else throw $e;
+		}
+	}
+ 
+	public function __set($name, $value) {
+		try {
+			return parent::__set($name, $value);
+		} catch (CException $e) {
+			$m = $this->getModel();
+			$m->{$name} = $value;
+		}
+	}
+ 
+	public function __call($name, $parameters) {
+		try {
+			return parent::__call($name, $parameters);	
+		} catch (CException $e) {
+			$m = $this->getModel();
+			return call_user_func_array(array($m,$name), $parameters);
+		}
+	}
+
+	public function getModel()
+	{
+		if(!isset($this->id)) $this->model = new User;
+		if($this->model === null)
+			$this->model = User::model()->findByPk($this->id);
+		return $this->model;
+	}
+}
+?>

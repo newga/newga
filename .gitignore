@@ -1,0 +1,42 @@
+
+# public_html folders and files
+# =============================
+
+public_html/error_log
+public_html/files
+public_html/cache_tool
+public_html/protected/test-csv/
+
+
+# Server folders, files and hidden files
+# ======================================
+
+# Grunt SASS
+/node_modules
+.sass-cache
+
+.gitconfig
+
+.DS_Store
+.bash_logout
+.bash_profile
+.bashrc
+.contactemail
+etc
+.htpasswds
+/mail
+public_ftp
+tmp
+.cpanel
+access-logs
+www
+cpbackup-exclude.conf
+.bash_history
+.dns
+.lastlogin
+.ssh
+ssl
+error_log
+nightly_transfer
+.passphrase
+._*
